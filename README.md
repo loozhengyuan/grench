@@ -10,6 +10,8 @@ The `grench` (_derived from the words 'go' and 'wrench'_) project aims to provid
 
 ## Install
 
+`grench` requires Go 1.13 or later.
+
 To install `grench`, use `go get` to fetch the latest version:
 
 ```shell
