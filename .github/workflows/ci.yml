@@ -46,7 +46,7 @@ jobs:
 
       - name: Lint code
         run: |
-          test -z $$(gofmt -l .)
+          test -z $(gofmt -l .)
 
       - name: Validate code
         run: |
