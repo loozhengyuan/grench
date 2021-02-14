@@ -37,7 +37,7 @@ func ClickjackingProtection(next http.Handler) http.Handler {
 		// NOTE: Although the X-Frame-Options header is deprecated, we still
 		// preserve it to support older browsers that do not support the new
 		// CSP Level 2 specification. In some browsers, the X-Frame-Options
-		// header, though deprecated, may take precendence over the `frame-ancestors`
+		// header, though deprecated, may take precedence over the `frame-ancestors`
 		// directive in the Content-Security-Policy header.
 		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
 		w.Header().Set(header.XFrameOptions.String(), "DENY")
