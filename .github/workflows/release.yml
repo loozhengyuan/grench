@@ -1,0 +1,89 @@
+name: release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  constraints:
+    name: Setup build constraints
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    outputs:
+      sha: ${{ steps.sha.outputs.value }}
+      version: ${{ steps.version.outputs.value }}
+      timestamp: ${{ steps.timestamp.outputs.value }}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Check git ref
+        run: |
+          [[ "${{ github.ref }}" == refs/tags/* ]]
+
+      - name: Set sha
+        id: sha
+        run: |
+          echo "::set-output name=value::${{ github.sha }}"
+
+      - name: Set version
+        id: version
+        run: |
+          echo "::set-output name=value::$(echo ${{ github.ref }} | sed -e 's|.*/||')"
+
+      - name: Set timestamp
+        id: timestamp
+        run: |
+          echo "::set-output name=value::$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+      - name: Check version
+        run: |
+          [[ "${{ steps.version.outputs.value }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+
+  changelog:
+    name: Parse changelog
+    needs: constraints
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    outputs:
+      body: ${{ steps.changelog.outputs.body }}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Parse changelog
+        id: changelog
+        # NOTE: actions/create-release does not support multiline body, and it does
+        # not support reading from files either, so as suggested in the GitHub issue,
+        # the workaround is to encode the line endings and carriage returns.
+        # https://github.com/actions/create-release/issues/25
+        run: |
+          BODY=$(sed -n "/<!-- START ${{ needs.constraints.outputs.version }} -->/,/<!-- END ${{ needs.constraints.outputs.version }} -->/{//!p;}" CHANGELOG.md)
+          BODY="${BODY//$'%'/'%25'}"
+          BODY="${BODY//$'\n'/'%0A'}"
+          BODY="${BODY//$'\r'/'%0D'}"
+          echo "::set-output name=body::${BODY}"
+
+  release:
+    name: Create release
+    needs: [constraints, changelog]
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag_name: ${{ needs.constraints.outputs.version }}
+          release_name: ${{ needs.constraints.outputs.version }}
+          body: ${{ needs.changelog.outputs.body }}
+          draft: false
+          prerelease: false
