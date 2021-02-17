@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-* Set go.mod `go` directive to minimum supported Go version (#12)
+* Set go.mod `go` directive to minimum supported Go version ([#12](https://github.com/loozhengyuan/grench/pull/11))
 
 <!-- END Unreleased -->
 
