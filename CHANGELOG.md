@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Fixed
+
+* Set go.mod `go` directive to minimum supported Go version (#12)
+
 <!-- END Unreleased -->
 
 ## [v0.1.0] - 2021-02-17
