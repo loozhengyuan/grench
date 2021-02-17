@@ -3,6 +3,7 @@
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/loozhengyuan/grench)](https://pkg.go.dev/github.com/loozhengyuan/grench)
 [![Go Report Card](https://goreportcard.com/badge/github.com/loozhengyuan/grench)](https://goreportcard.com/report/github.com/loozhengyuan/grench)
 ![ci](https://github.com/loozhengyuan/grench/workflows/ci/badge.svg)
+![release](https://github.com/loozhengyuan/grench/workflows/release/badge.svg)
 
 `grench` is an opinionated, zero-dependency utility library for developing Go applications.
 
