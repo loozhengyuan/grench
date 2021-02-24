@@ -125,8 +125,7 @@ func TestNew(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			chkr := New()
-			chkr.Register(tc.checks...)
+			chkr := New(tc.checks...)
 			got, err := chkr.Check()
 			if err != nil && !errors.Is(err, errFake) {
 				t.Fatalf("failed to execute method call: %v", err)
