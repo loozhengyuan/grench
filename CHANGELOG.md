@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 * Health checks now run asynchronously ([#22](https://github.com/loozhengyuan/grench/pull/22))
+* JSON struct tags for health.Info ([#24](https://github.com/loozhengyuan/grench/pull/24))
 
 <!-- END Unreleased -->
 
