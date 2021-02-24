@@ -3,6 +3,7 @@ package health
 
 import (
 	"strconv"
+	"sync"
 	"time"
 )
 
@@ -64,10 +65,17 @@ type service struct {
 var _ Checker = (*service)(nil)
 
 func (s service) Check() []Info {
-	status := make([]Info, 0, len(s.checks))
-	for _, check := range s.checks {
-		status = append(status, check())
+	status := make([]Info, len(s.checks))
+	var wg sync.WaitGroup
+	for i, check := range s.checks {
+		i, check := i, check // capture range variable
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			status[i] = check()
+		}()
 	}
+	wg.Wait()
 	return status
 }
 
