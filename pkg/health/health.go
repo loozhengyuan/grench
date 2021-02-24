@@ -53,9 +53,6 @@ type CheckFunc func() (Info, error)
 
 // Checker is the interface of a health check service.
 type Checker interface {
-	// Register registers one or more CheckFuncs with the health check service.
-	Register(...CheckFunc)
-
 	// Check executes and returns the outcome of all registered CheckFuncs.
 	Check() ([]Info, error)
 }
@@ -65,12 +62,6 @@ type service struct {
 }
 
 var _ Checker = (*service)(nil)
-
-func (s *service) Register(checks ...CheckFunc) {
-	for _, c := range checks {
-		s.checks = append(s.checks, c)
-	}
-}
 
 func (s service) Check() ([]Info, error) {
 	status := make([]Info, 0, len(s.checks))
@@ -85,6 +76,8 @@ func (s service) Check() ([]Info, error) {
 }
 
 // New returns a new health check service.
-func New() Checker {
-	return &service{}
+func New(checks ...CheckFunc) Checker {
+	return &service{
+		checks: checks,
+	}
 }
