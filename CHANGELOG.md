@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 
 * Support for Go 1.16 ([#13](https://github.com/loozhengyuan/grench/pull/13))
 
+### Changed
+
+* Drop register pattern on the health.Checker interface ([#16](https://github.com/loozhengyuan/grench/pull/16))
+
 ### Fixed
 
 * Set go.mod `go` directive to minimum supported Go version ([#12](https://github.com/loozhengyuan/grench/pull/12))
