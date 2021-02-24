@@ -85,6 +85,8 @@ func (s service) Check() ([]Info, error) {
 }
 
 // New returns a new health check service.
-func New() Checker {
-	return &service{}
+func New(checks ...CheckFunc) Checker {
+	return &service{
+		checks: checks,
+	}
 }
