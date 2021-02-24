@@ -34,19 +34,19 @@ func (s Status) String() string {
 // Info represents the outcome of a health check.
 type Info struct {
 	// Name of the component, e.g. database, network, etc.
-	Component string
+	Component string `json:"component,omitempty"`
 
 	// Health status of the component.
-	Status Status
+	Status Status `json:"status,omitempty"`
 
 	// Information on the health status.
-	Message string
+	Message string `json:"message,omitempty"`
 
 	// Timestamp when component was checked.
-	CheckedAt time.Time
+	CheckedAt time.Time `json:"checked_at,omitempty"`
 
 	// Metadata information about the component check.
-	Metadata map[string]string
+	Metadata map[string]string `json:"metadata,omitempty"`
 }
 
 // CheckFunc is a functional expression of a check procedure.
