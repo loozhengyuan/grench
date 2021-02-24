@@ -1,12 +1,9 @@
 package health
 
 import (
-	"errors"
 	"reflect"
 	"testing"
 )
-
-var errFake = errors.New("fake error")
 
 func TestStatus_String(t *testing.T) {
 	cases := map[string]struct {
@@ -48,12 +45,11 @@ func TestService_Check(t *testing.T) {
 	}{
 		"check_single_distinct": {
 			checks: []CheckFunc{
-				func() (Info, error) {
-					info := Info{
+				func() Info {
+					return Info{
 						Component: "db",
 						Status:    StatusPass,
 					}
-					return info, nil
 				},
 			},
 			info: []Info{
@@ -62,26 +58,23 @@ func TestService_Check(t *testing.T) {
 		},
 		"check_multiple_duplicates": {
 			checks: []CheckFunc{
-				func() (Info, error) {
-					info := Info{
+				func() Info {
+					return Info{
 						Component: "db",
 						Status:    StatusPass,
 					}
-					return info, nil
 				},
-				func() (Info, error) {
-					info := Info{
+				func() Info {
+					return Info{
 						Component: "db",
 						Status:    StatusPass,
 					}
-					return info, nil
 				},
-				func() (Info, error) {
-					info := Info{
+				func() Info {
+					return Info{
 						Component: "db",
 						Status:    StatusPass,
 					}
-					return info, nil
 				},
 			},
 			info: []Info{
@@ -92,31 +85,22 @@ func TestService_Check(t *testing.T) {
 		},
 		"check_multiple_distinct": {
 			checks: []CheckFunc{
-				func() (Info, error) {
-					info := Info{
+				func() Info {
+					return Info{
 						Component: "db",
 						Status:    StatusPass,
 					}
-					return info, nil
 				},
-				func() (Info, error) {
-					info := Info{
+				func() Info {
+					return Info{
 						Component: "api",
 						Status:    StatusFail,
 					}
-					return info, nil
 				},
 			},
 			info: []Info{
 				{Component: "db", Status: StatusPass},
 				{Component: "api", Status: StatusFail},
-			},
-		},
-		"check_error": {
-			checks: []CheckFunc{
-				func() (Info, error) {
-					return Info{}, errFake
-				},
 			},
 		},
 		"check_noop": {},
@@ -126,10 +110,7 @@ func TestService_Check(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			chkr := New(tc.checks...)
-			got, err := chkr.Check()
-			if err != nil && !errors.Is(err, errFake) {
-				t.Fatalf("failed to execute method call: %v", err)
-			}
+			got := chkr.Check()
 			if g, w := len(got), len(tc.info); g != w {
 				t.Fatalf("slice length mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
 			}
