@@ -64,15 +64,15 @@ type service struct {
 var _ Checker = (*service)(nil)
 
 func (s service) Check() ([]Info, error) {
-	var output []Info
+	status := make([]Info, 0, len(s.checks))
 	for _, check := range s.checks {
 		info, err := check()
 		if err != nil {
 			return nil, err
 		}
-		output = append(output, info)
+		status = append(status, info)
 	}
-	return output, nil
+	return status, nil
 }
 
 // New returns a new health check service.
