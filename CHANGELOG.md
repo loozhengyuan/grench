@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Added
+
+* Health checks now run asynchronously ([#22](https://github.com/loozhengyuan/grench/pull/22))
+
 <!-- END Unreleased -->
 
 ## [v0.2.0] - 2021-02-24
