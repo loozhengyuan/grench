@@ -49,12 +49,12 @@ type Info struct {
 }
 
 // CheckFunc is a functional expression of a check procedure.
-type CheckFunc func() (Info, error)
+type CheckFunc func() Info
 
 // Checker is the interface of a health check service.
 type Checker interface {
 	// Check executes and returns the outcome of all registered CheckFuncs.
-	Check() ([]Info, error)
+	Check() []Info
 }
 
 type service struct {
@@ -63,16 +63,12 @@ type service struct {
 
 var _ Checker = (*service)(nil)
 
-func (s service) Check() ([]Info, error) {
+func (s service) Check() []Info {
 	status := make([]Info, 0, len(s.checks))
 	for _, check := range s.checks {
-		info, err := check()
-		if err != nil {
-			return nil, err
-		}
-		status = append(status, info)
+		status = append(status, check())
 	}
-	return status, nil
+	return status
 }
 
 // New returns a new health check service.
