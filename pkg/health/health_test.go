@@ -132,7 +132,7 @@ func TestService_Check(t *testing.T) {
 				t.Fatalf("failed to execute method call: %v", err)
 			}
 			if g, w := len(got), len(tc.info); g != w {
-				t.Errorf("slice length mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
+				t.Fatalf("slice length mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
 			}
 			for i := 0; i < len(tc.info); i++ {
 				assertInfoEqual(t, got[i], tc.info[i])
