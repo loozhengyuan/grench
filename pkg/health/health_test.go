@@ -41,7 +41,7 @@ func TestStatus_String(t *testing.T) {
 	}
 }
 
-func TestNew(t *testing.T) {
+func TestService_Check(t *testing.T) {
 	cases := map[string]struct {
 		checks []CheckFunc
 		info   []Info
