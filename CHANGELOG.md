@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 * Disallow checks from returning errors ([#21](https://github.com/loozhengyuan/grench/pull/21))
+* Rename functions in pointer package ([#25](https://github.com/loozhengyuan/grench/pull/25))
 
 <!-- END Unreleased -->
 

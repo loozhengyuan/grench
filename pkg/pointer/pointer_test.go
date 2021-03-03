@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestIntPtr(t *testing.T) {
+func TestInt(t *testing.T) {
 	cases := map[string]struct {
 		input int
 	}{
@@ -15,7 +15,7 @@ func TestIntPtr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *IntPtr(tc.input) // deference from output
+			got := *Int(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
@@ -23,7 +23,7 @@ func TestIntPtr(t *testing.T) {
 	}
 }
 
-func TestInt32Ptr(t *testing.T) {
+func TestInt32(t *testing.T) {
 	cases := map[string]struct {
 		input int32
 	}{
@@ -34,7 +34,7 @@ func TestInt32Ptr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *Int32Ptr(tc.input) // deference from output
+			got := *Int32(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
@@ -42,7 +42,7 @@ func TestInt32Ptr(t *testing.T) {
 	}
 }
 
-func TestInt64Ptr(t *testing.T) {
+func TestInt64(t *testing.T) {
 	cases := map[string]struct {
 		input int64
 	}{
@@ -53,7 +53,7 @@ func TestInt64Ptr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *Int64Ptr(tc.input) // deference from output
+			got := *Int64(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
@@ -61,7 +61,7 @@ func TestInt64Ptr(t *testing.T) {
 	}
 }
 
-func TestFloat32Ptr(t *testing.T) {
+func TestFloat32(t *testing.T) {
 	cases := map[string]struct {
 		input float32
 	}{
@@ -72,7 +72,7 @@ func TestFloat32Ptr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *Float32Ptr(tc.input) // deference from output
+			got := *Float32(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
@@ -80,7 +80,7 @@ func TestFloat32Ptr(t *testing.T) {
 	}
 }
 
-func TestFloat64Ptr(t *testing.T) {
+func TestFloat64(t *testing.T) {
 	cases := map[string]struct {
 		input float64
 	}{
@@ -91,7 +91,7 @@ func TestFloat64Ptr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *Float64Ptr(tc.input) // deference from output
+			got := *Float64(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
@@ -99,7 +99,7 @@ func TestFloat64Ptr(t *testing.T) {
 	}
 }
 
-func TestBoolPtr(t *testing.T) {
+func TestBool(t *testing.T) {
 	cases := map[string]struct {
 		input bool
 	}{
@@ -110,7 +110,7 @@ func TestBoolPtr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *BoolPtr(tc.input) // deference from output
+			got := *Bool(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
@@ -118,7 +118,7 @@ func TestBoolPtr(t *testing.T) {
 	}
 }
 
-func TestStringPtr(t *testing.T) {
+func TestString(t *testing.T) {
 	cases := map[string]struct {
 		input string
 	}{
@@ -129,7 +129,7 @@ func TestStringPtr(t *testing.T) {
 		tc := tc // capture range variable
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			got := *StringPtr(tc.input) // deference from output
+			got := *String(tc.input) // deference from output
 			if got != tc.input {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
 			}
