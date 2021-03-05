@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v0.3.0] - 2021-03-05
 
-<!-- START Unreleased -->
+<!-- START v0.3.0 -->
 
 ### Added
 
@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 * Disallow checks from returning errors ([#21](https://github.com/loozhengyuan/grench/pull/21))
 * Rename functions in pointer package ([#25](https://github.com/loozhengyuan/grench/pull/25))
 
-<!-- END Unreleased -->
+<!-- END v0.3.0 -->
 
 ## [v0.2.0] - 2021-02-24
 
@@ -44,6 +44,6 @@ Initial release.
 
 <!-- END v0.1.0 -->
 
-[Unreleased]: https://github.com/loozhengyuan/grench/compare/v0.2.0...HEAD
+[v0.3.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.2.0
 [v0.1.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.1.0
