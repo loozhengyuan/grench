@@ -26,14 +26,14 @@ func TestNullUUID_Value(t *testing.T) {
 				String: "",
 				Valid:  true,
 			},
-			want: []byte(""),
+			want: nil, // empty bytestring is equivalent to nil
 		},
 		"string_null": {
 			obj: NullUUID{
 				String: "",
 				Valid:  false,
 			},
-			want: []byte(nil), // should be nil
+			want: nil, // should be nil
 		},
 	}
 	for name, tc := range cases {
@@ -95,21 +95,37 @@ func TestNullUUID_Scan(t *testing.T) {
 			},
 		},
 		"bytestring_empty": {
-			input: []byte(""),
+			input: []byte(""), // nil
 			want: NullUUID{
 				String: "",
-				Valid:  false,
+				Valid:  false, // empty bytestring is equivalent to nil
 			},
 		},
 		"bytestring_null": {
-			input: []byte(nil),
+			input: []byte(nil), // nil
 			want: NullUUID{
 				String: "",
 				Valid:  false, // should be nil
 			},
 		},
 		"error_unhandled_type_int": {
-			input: int(0),
+			input: 1,
+			want: NullUUID{
+				String: "",
+				Valid:  false, // should be nil
+			},
+			err: ErrUnhandledType,
+		},
+		"error_unhandled_type_float": {
+			input: 1.0,
+			want: NullUUID{
+				String: "",
+				Valid:  false, // should be nil
+			},
+			err: ErrUnhandledType,
+		},
+		"error_unhandled_type_bool": {
+			input: true,
 			want: NullUUID{
 				String: "",
 				Valid:  false, // should be nil
@@ -154,14 +170,14 @@ func TestNullUUID_MarshalJSON(t *testing.T) {
 				String: "",
 				Valid:  true,
 			},
-			want: []byte(""),
+			want: nil, // empty bytestring is equivalent to nil
 		},
 		"string_null": {
 			obj: NullUUID{
 				String: "",
 				Valid:  false,
 			},
-			want: []byte(nil), // should be nil
+			want: nil, // should be nil
 		},
 	}
 	for name, tc := range cases {
