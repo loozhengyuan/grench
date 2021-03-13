@@ -30,7 +30,7 @@ var _ sql.Scanner = (*NullUUID)(nil)
 // Value returns the NullUUID as a driver.Value.
 func (t NullUUID) Value() (driver.Value, error) {
 	if !t.Valid {
-		return []byte(nil), nil
+		return nil, nil
 	}
 	return []byte(t.String), nil
 }
@@ -62,7 +62,7 @@ var _ json.Unmarshaler = (*NullUUID)(nil)
 // MarshalJSON encodes the typed object as JSON format.
 func (t NullUUID) MarshalJSON() ([]byte, error) {
 	if !t.Valid {
-		return []byte(nil), nil
+		return nil, nil
 	}
 	return []byte(t.String), nil
 }

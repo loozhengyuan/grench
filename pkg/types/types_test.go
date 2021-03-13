@@ -44,12 +44,17 @@ func TestNullUUID_Value(t *testing.T) {
 			if g, w := err, tc.err; !errors.Is(g, w) {
 				t.Fatalf("error value mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
 			}
-			b, ok := got.([]byte)
-			if !ok {
-				t.Fatalf("type assertion failure:\ngot:\t%#v", b)
-			}
-			if g, w := b, tc.want; !bytes.Equal(g, w) {
-				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
+			switch v := got.(type) {
+			case nil:
+				if g, w := v, tc.want; g != nil {
+					t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
+				}
+			case []byte:
+				if g, w := v, tc.want; !bytes.Equal(g, w) {
+					t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", g, w)
+				}
+			default:
+				t.Fatalf("unhandled type:\ngot:\t%#v", v)
 			}
 		})
 	}
