@@ -103,6 +103,14 @@ func TestNullUUID_Scan(t *testing.T) {
 				Valid:  false, // should be nil
 			},
 		},
+		"error_unhandled_type_int": {
+			input: int(0),
+			want: NullUUID{
+				String: "",
+				Valid:  false, // should be nil
+			},
+			err: ErrUnhandledType,
+		},
 	}
 	for name, tc := range cases {
 		tc := tc // capture range variable
