@@ -39,16 +39,14 @@ func (t NullUUID) Value() (driver.Value, error) {
 func (t *NullUUID) Scan(value interface{}) error {
 	switch v := value.(type) {
 	case nil:
-		t.Valid = false
+		t.String, t.Valid = "", false
 	case []byte:
-		t.String = string(v)
-		t.Valid = true
+		t.String, t.Valid = string(v), true
 		if bytes.Equal(v, []byte{}) {
 			t.Valid = false
 		}
 	case string:
-		t.String = v
-		t.Valid = true
+		t.String, t.Valid = v, true
 	default:
 		return fmt.Errorf("%w: %T", ErrUnhandledType, v)
 	}
@@ -72,7 +70,6 @@ func (t *NullUUID) UnmarshalJSON(data []byte) error {
 	if data == nil {
 		return nil
 	}
-	t.String = string(data)
-	t.Valid = true
+	t.String, t.Valid = string(data), true
 	return nil
 }
