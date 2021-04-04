@@ -9,8 +9,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 * New `auth/oidc` package ([#28])
+* New `auth/oauth2/pkce` package ([#32])
 
 [#28]: https://github.com/loozhengyuan/grench/pull/28
+[#32]: https://github.com/loozhengyuan/grench/pull/32
 
 <!-- END Unreleased -->
 
