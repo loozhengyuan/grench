@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-* New `auth/oidc` package ([#28](https://github.com/loozhengyuan/grench/pull/28))
+* New `auth/oidc` package ([#28])
 
 <!-- END Unreleased -->
 
@@ -18,13 +18,13 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-* Health checks now run asynchronously ([#22](https://github.com/loozhengyuan/grench/pull/22))
-* JSON struct tags for health.Info ([#24](https://github.com/loozhengyuan/grench/pull/24))
+* Health checks now run asynchronously ([#22])
+* JSON struct tags for health.Info ([#24])
 
 ### Changed
 
-* Disallow checks from returning errors ([#21](https://github.com/loozhengyuan/grench/pull/21))
-* Rename functions in pointer package ([#25](https://github.com/loozhengyuan/grench/pull/25))
+* Disallow checks from returning errors ([#21])
+* Rename functions in pointer package ([#25])
 
 <!-- END v0.3.0 -->
 
@@ -34,15 +34,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-* Support for Go 1.16 ([#13](https://github.com/loozhengyuan/grench/pull/13))
+* Support for Go 1.16 ([#13])
 
 ### Changed
 
-* Drop register pattern on the health.Checker interface ([#16](https://github.com/loozhengyuan/grench/pull/16))
+* Drop register pattern on the health.Checker interface ([#16])
 
 ### Fixed
 
-* Set go.mod `go` directive to minimum supported Go version ([#12](https://github.com/loozhengyuan/grench/pull/12))
+* Set go.mod `go` directive to minimum supported Go version ([#12])
 
 <!-- END v0.2.0 -->
 
@@ -53,6 +53,15 @@ All notable changes to this project will be documented in this file.
 Initial release.
 
 <!-- END v0.1.0 -->
+
+[#12]: https://github.com/loozhengyuan/grench/pull/12
+[#13]: https://github.com/loozhengyuan/grench/pull/13
+[#16]: https://github.com/loozhengyuan/grench/pull/16
+[#21]: https://github.com/loozhengyuan/grench/pull/21
+[#22]: https://github.com/loozhengyuan/grench/pull/22
+[#24]: https://github.com/loozhengyuan/grench/pull/24
+[#25]: https://github.com/loozhengyuan/grench/pull/25
+[#28]: https://github.com/loozhengyuan/grench/pull/28
 
 [Unreleased]: https://github.com/loozhengyuan/grench/compare/v0.3.0...HEAD
 [v0.3.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.3.0
