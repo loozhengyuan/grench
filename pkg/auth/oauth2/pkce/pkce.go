@@ -7,6 +7,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
+	"io"
 )
 
 const defaultByteSequenceLength = 32 // as recommended in RFC7636
@@ -31,18 +32,27 @@ func (v CodeVerifier) CodeChallengeSHA256() string {
 }
 
 // NewCodeVerifier returns a new CodeVerifier.
+//
+// NewCodeVerifier is a generalised constructor for CodeVerifier;
+// most users will use NewCodeVerifierFromRandom instead.
 func NewCodeVerifier(b []byte) *CodeVerifier {
 	return &CodeVerifier{
 		value: base64.RawURLEncoding.EncodeToString(b),
 	}
 }
 
-// NewCodeVerifierFromRandom is like NewCodeVerifier but generates
-// a high-entropy, cryptographically random source value automatically.
-func NewCodeVerifierFromRandom() (*CodeVerifier, error) {
-	b := make([]byte, defaultByteSequenceLength)
-	if _, err := rand.Read(b); err != nil {
+// NewCodeVerifierFromReader is like NewCodeVerifier but reads the
+// value from a random source.
+func NewCodeVerifierFromReader(r io.Reader, len int) (*CodeVerifier, error) {
+	b := make([]byte, len)
+	if _, err := r.Read(b); err != nil {
 		return nil, fmt.Errorf("read random: %w", err)
 	}
 	return NewCodeVerifier(b), nil
+}
+
+// NewCodeVerifierFromRandom is like NewCodeVerifier but generates
+// a high-entropy, cryptographically-random source value automatically.
+func NewCodeVerifierFromRandom() (*CodeVerifier, error) {
+	return NewCodeVerifierFromReader(rand.Reader, defaultByteSequenceLength)
 }
