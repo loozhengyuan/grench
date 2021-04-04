@@ -11,7 +11,7 @@ import (
 
 const defaultByteSequenceLength = 32 // as recommended in RFC7636
 
-// CodeVerifier is a high-entropy, cryptographically random string that
+// CodeVerifier is a high-entropy, cryptographically-random string that
 // is used to correlate the authorization request to the token request.
 type CodeVerifier struct {
 	value string
