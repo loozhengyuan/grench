@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-const randomSequenceOctetLength = 32
+const defaultByteSequenceLength = 32 // as recommended in RFC7636
 
 // CodeVerifier is a high-entropy, cryptographically random string that
 // is used to correlate the authorization request to the token request.
@@ -40,7 +40,7 @@ func NewCodeVerifier(b []byte) *CodeVerifier {
 // NewCodeVerifierFromRandom is like NewCodeVerifier but generates
 // a high-entropy, cryptographically random source value automatically.
 func NewCodeVerifierFromRandom() (*CodeVerifier, error) {
-	b := make([]byte, randomSequenceOctetLength)
+	b := make([]byte, defaultByteSequenceLength)
 	if _, err := rand.Read(b); err != nil {
 		return nil, fmt.Errorf("read random: %w", err)
 	}
