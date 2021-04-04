@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Added
+
+* New `auth/oidc` package ([#28](https://github.com/loozhengyuan/grench/pull/28))
+
 <!-- END Unreleased -->
 
 ## [v0.3.0] - 2021-03-05
