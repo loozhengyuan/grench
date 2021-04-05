@@ -9,8 +9,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 * New `auth/oauth2` package ([#37])
+* New `TokenResponse` type ([#38])
 
 [#37]: https://github.com/loozhengyuan/grench/pull/37
+[#38]: https://github.com/loozhengyuan/grench/pull/38
 
 <!-- END Unreleased -->
 
