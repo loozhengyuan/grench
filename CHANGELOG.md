@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Added
+
+* New `auth/oauth2` package ([#37])
+
+[#37]: https://github.com/loozhengyuan/grench/pull/37
+
 <!-- END Unreleased -->
 
 ## [v0.4.0] - 2021-04-04
