@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 var (
@@ -88,4 +89,13 @@ func NewProviderFromDiscoveryEndpoint(url string) (*Provider, error) {
 		return nil, fmt.Errorf("%w: got %d", ErrDiscoveryEndpointInvalidStatusCode, v)
 	}
 	return NewProviderFromJSON(resp.Body)
+}
+
+// NewProviderFromIssuer returns a new Provider from an issuer.
+func NewProviderFromIssuer(issuer string) (*Provider, error) {
+	u, err := url.Parse(issuer + "/.well-known/openid-configuration")
+	if err != nil {
+		return nil, fmt.Errorf("parse url: %w", err)
+	}
+	return NewProviderFromDiscoveryEndpoint(u.String())
 }
