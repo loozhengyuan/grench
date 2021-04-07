@@ -17,7 +17,7 @@ func TestStorePushPullSequence(t *testing.T, s NewStoreFunc) {
 		err  error
 	}{
 		"default": {
-			key:  "",
+			key:  "abc",
 			data: "xyz",
 		},
 		"empty_data": {
