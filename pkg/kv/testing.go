@@ -14,7 +14,6 @@ func TestStorePushPullSequence(t *testing.T, s NewStoreFunc) {
 	cases := map[string]struct {
 		key  string
 		data string
-		err  error
 	}{
 		"default": {
 			key:  "abc",
@@ -23,11 +22,6 @@ func TestStorePushPullSequence(t *testing.T, s NewStoreFunc) {
 		"empty_data": {
 			key:  "abc",
 			data: "", // empty
-		},
-		"error_empty_key": {
-			key:  "", // empty
-			data: "xyz",
-			err:  ErrEmptyKey,
 		},
 	}
 	for name, tc := range cases {
@@ -65,11 +59,72 @@ func TestStorePushPullSequence(t *testing.T, s NewStoreFunc) {
 	}
 }
 
-func TestStoreClear(t *testing.T, s NewStoreFunc) {
+func TestStorePushError(t *testing.T, s NewStoreFunc) {
 	cases := map[string]struct {
 		key  string
 		data string
 		err  error
+	}{
+		"error_empty_key": {
+			key:  "", // empty
+			data: "xyz",
+			err:  ErrEmptyKey,
+		},
+	}
+	for name, tc := range cases {
+		tc := tc // capture range variable
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
+			// Setup store
+			store, err := s()
+			if err != nil {
+				t.Fatalf("failed to create store: %v", err)
+			}
+
+			// Call method
+			if err := store.Push(tc.key, strings.NewReader(tc.data)); !errors.Is(err, tc.err) {
+				t.Fatalf("error value mismatch:\ngot:\t%#v\nwant:\t%#v", errors.Unwrap(err), tc.err)
+			}
+		})
+	}
+}
+
+func TestStorePullError(t *testing.T, s NewStoreFunc) {
+	cases := map[string]struct {
+		key  string
+		data string
+		err  error
+	}{
+		"error_empty_key": {
+			key:  "", // empty
+			data: "xyz",
+			err:  ErrEmptyKey,
+		},
+	}
+	for name, tc := range cases {
+		tc := tc // capture range variable
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
+			// Setup store
+			store, err := s()
+			if err != nil {
+				t.Fatalf("failed to create store: %v", err)
+			}
+
+			// Call method
+			if err := store.Pull(tc.key, ioutil.Discard); !errors.Is(err, tc.err) {
+				t.Fatalf("error value mismatch:\ngot:\t%#v\nwant:\t%#v", errors.Unwrap(err), tc.err)
+			}
+		})
+	}
+}
+
+func TestStoreClear(t *testing.T, s NewStoreFunc) {
+	cases := map[string]struct {
+		key  string
+		data string
 	}{
 		"default": {
 			key:  "abc",
@@ -110,6 +165,37 @@ func TestStoreClear(t *testing.T, s NewStoreFunc) {
 			// Assert data not exist
 			if err := store.Pull(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
 				t.Fatalf("data exists: %v", err)
+			}
+		})
+	}
+}
+
+func TestStoreClearError(t *testing.T, s NewStoreFunc) {
+	cases := map[string]struct {
+		key  string
+		data string
+		err  error
+	}{
+		"error_empty_key": {
+			key:  "", // empty
+			data: "xyz",
+			err:  ErrEmptyKey,
+		},
+	}
+	for name, tc := range cases {
+		tc := tc // capture range variable
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
+			// Setup store
+			store, err := s()
+			if err != nil {
+				t.Fatalf("failed to create store: %v", err)
+			}
+
+			// Call method
+			if err := store.Clear(tc.key); !errors.Is(err, tc.err) {
+				t.Fatalf("error value mismatch:\ngot:\t%#v\nwant:\t%#v", errors.Unwrap(err), tc.err)
 			}
 		})
 	}
