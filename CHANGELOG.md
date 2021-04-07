@@ -10,9 +10,13 @@ All notable changes to this project will be documented in this file.
 
 * `auth/oauth2`: New `TokenResponse` type ([#37])
 * `auth/oidc`: New `TokenResponse` type ([#38])
+* `kv`: New key-value storage interface ([#41])
+* `kv/mem`: In-memory implementation of `kv.Store` ([#41])
+* `kv/fs`: Local filesystem implementation of `kv.Store` ([#41])
 
 [#37]: https://github.com/loozhengyuan/grench/pull/37
 [#38]: https://github.com/loozhengyuan/grench/pull/38
+[#41]: https://github.com/loozhengyuan/grench/pull/41
 
 <!-- END Unreleased -->
 
