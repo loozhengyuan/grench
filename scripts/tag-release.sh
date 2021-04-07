@@ -2,7 +2,7 @@
 
 # This script creates a new annotated tag for release.
 # 
-# Usage: `hack/tag-release.sh`.
+# Usage: `scripts/tag-release.sh`.
 
 set -o errexit
 set -o nounset
