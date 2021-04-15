@@ -8,7 +8,7 @@ import (
 )
 
 func New(len int) ([]byte, error) {
-	b := make([]byte, 16)
+	b := make([]byte, len)
 	if _, err := rand.Read(b); err != nil {
 		return nil, fmt.Errorf("read rand: %w", err)
 	}
