@@ -2,6 +2,7 @@
 package fs
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -20,7 +21,11 @@ type store struct {
 
 var _ kv.Store = (*store)(nil)
 
-func (s *store) Push(key string, r io.Reader) error {
+func (s *store) Push(key string, data []byte) error {
+	return s.PushReader(key, bytes.NewReader(data))
+}
+
+func (s *store) PushReader(key string, r io.Reader) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if key == "" {
@@ -40,7 +45,15 @@ func (s *store) Push(key string, r io.Reader) error {
 	return nil
 }
 
-func (s *store) Pull(key string, w io.Writer) error {
+func (s *store) Pull(key string) ([]byte, error) {
+	var b bytes.Buffer
+	if err := s.PullWriter(key, &b); err != nil {
+		return nil, fmt.Errorf("write data: %w", err)
+	}
+	return b.Bytes(), nil
+}
+
+func (s *store) PullWriter(key string, w io.Writer) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if key == "" {
