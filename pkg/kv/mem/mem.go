@@ -17,32 +17,43 @@ type store struct {
 
 var _ kv.Store = (*store)(nil)
 
-func (s *store) PushReader(key string, r io.Reader) error {
+func (s *store) Push(key string, data []byte) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if key == "" {
 		return kv.ErrEmptyKey
 	}
+	s.data[key] = data
+	return nil
+}
+
+func (s *store) PushReader(key string, r io.Reader) error {
 	var b bytes.Buffer
 	if _, err := io.Copy(&b, r); err != nil {
 		return fmt.Errorf("copy io: %w", err)
 	}
-	s.data[key] = b.Bytes()
-	return nil
+	return s.Push(key, b.Bytes())
 }
 
-func (s *store) PullWriter(key string, w io.Writer) error {
+func (s *store) Pull(key string) ([]byte, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if key == "" {
-		return kv.ErrEmptyKey
+		return nil, kv.ErrEmptyKey
 	}
 	v, ok := s.data[key]
 	if !ok {
-		return fmt.Errorf("read map: %w", kv.ErrNotFound)
+		return nil, fmt.Errorf("read map: %w", kv.ErrNotFound)
 	}
-	b := bytes.NewReader(v)
-	if _, err := io.Copy(w, b); err != nil {
+	return v, nil
+}
+
+func (s *store) PullWriter(key string, w io.Writer) error {
+	v, err := s.Pull(key)
+	if err != nil {
+		return fmt.Errorf("pull data: %w", err)
+	}
+	if _, err := io.Copy(w, bytes.NewReader(v)); err != nil {
 		return fmt.Errorf("copy io: %w", err)
 	}
 	return nil
