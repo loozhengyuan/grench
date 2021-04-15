@@ -10,7 +10,7 @@ import (
 
 type NewStoreFunc func() (Store, error)
 
-func TestStorePushPullSequence(t *testing.T, s NewStoreFunc) {
+func TestStorePushPull(t *testing.T, s NewStoreFunc) {
 	cases := map[string]struct {
 		key  string
 		data string
