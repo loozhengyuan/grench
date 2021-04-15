@@ -36,18 +36,18 @@ func TestStorePushPullSequence(t *testing.T, s NewStoreFunc) {
 			}
 
 			// Assert data not exist
-			if err := store.Pull(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
+			if err := store.PullWriter(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
 				t.Fatalf("data exists: %v", err)
 			}
 
 			// Push data
-			if err := store.Push(tc.key, strings.NewReader(tc.data)); err != nil {
+			if err := store.PushReader(tc.key, strings.NewReader(tc.data)); err != nil {
 				t.Fatalf("failed to push data: %v", err)
 			}
 
 			// Pull data
 			var b bytes.Buffer
-			if err := store.Pull(tc.key, &b); err != nil {
+			if err := store.PullWriter(tc.key, &b); err != nil {
 				t.Fatalf("failed to pull data: %v", err)
 			}
 
@@ -83,7 +83,7 @@ func TestStorePushError(t *testing.T, s NewStoreFunc) {
 			}
 
 			// Call method
-			if err := store.Push(tc.key, strings.NewReader(tc.data)); !errors.Is(err, tc.err) {
+			if err := store.PushReader(tc.key, strings.NewReader(tc.data)); !errors.Is(err, tc.err) {
 				t.Fatalf("error value mismatch:\ngot:\t%#v\nwant:\t%#v", errors.Unwrap(err), tc.err)
 			}
 		})
@@ -114,7 +114,7 @@ func TestStorePullError(t *testing.T, s NewStoreFunc) {
 			}
 
 			// Call method
-			if err := store.Pull(tc.key, ioutil.Discard); !errors.Is(err, tc.err) {
+			if err := store.PullWriter(tc.key, ioutil.Discard); !errors.Is(err, tc.err) {
 				t.Fatalf("error value mismatch:\ngot:\t%#v\nwant:\t%#v", errors.Unwrap(err), tc.err)
 			}
 		})
@@ -143,17 +143,17 @@ func TestStoreClear(t *testing.T, s NewStoreFunc) {
 			}
 
 			// Assert data not exist
-			if err := store.Pull(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
+			if err := store.PullWriter(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
 				t.Fatalf("data exists: %v", err)
 			}
 
 			// Push data
-			if err := store.Push(tc.key, strings.NewReader(tc.data)); err != nil {
+			if err := store.PushReader(tc.key, strings.NewReader(tc.data)); err != nil {
 				t.Fatalf("failed to push data: %v", err)
 			}
 
 			// Assert data exists
-			if err := store.Pull(tc.key, ioutil.Discard); errors.Is(err, ErrNotFound) {
+			if err := store.PullWriter(tc.key, ioutil.Discard); errors.Is(err, ErrNotFound) {
 				t.Fatalf("data not exists: %v", err)
 			}
 
@@ -163,7 +163,7 @@ func TestStoreClear(t *testing.T, s NewStoreFunc) {
 			}
 
 			// Assert data not exist
-			if err := store.Pull(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
+			if err := store.PullWriter(tc.key, ioutil.Discard); !errors.Is(err, ErrNotFound) {
 				t.Fatalf("data exists: %v", err)
 			}
 		})
