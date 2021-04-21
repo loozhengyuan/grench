@@ -47,13 +47,12 @@ jobs:
 
       - name: Lint code
         run: |
-          test -z $(gofmt -l .)
+          make lint
 
       - name: Validate code
         run: |
-          go vet -v ./...
+          make check
 
       - name: Run tests
         run: |
-          go test -race -cover -coverprofile=coverage.out -covermode=atomic ./...
-          go tool cover -func=coverage.out
+          make test
