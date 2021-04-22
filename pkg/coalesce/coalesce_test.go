@@ -38,6 +38,27 @@ func TestInt(t *testing.T) {
 	}
 }
 
+func BenchmarkInt(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []int
+	}{
+		"best": {
+			input: []int{1, 0, 0},
+		},
+		"worst": {
+			input: []int{0, 0, 0},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Int(bm.input...)
+			}
+		})
+	}
+}
+
 func TestInt32(t *testing.T) {
 	cases := map[string]struct {
 		input []int32
@@ -67,6 +88,27 @@ func TestInt32(t *testing.T) {
 			got := Int32(tc.input...)
 			if got != tc.want {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
+			}
+		})
+	}
+}
+
+func BenchmarkInt32(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []int32
+	}{
+		"best": {
+			input: []int32{1, 0, 0},
+		},
+		"worst": {
+			input: []int32{0, 0, 0},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Int32(bm.input...)
 			}
 		})
 	}
@@ -106,6 +148,27 @@ func TestInt64(t *testing.T) {
 	}
 }
 
+func BenchmarkInt64(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []int64
+	}{
+		"best": {
+			input: []int64{1, 0, 0},
+		},
+		"worst": {
+			input: []int64{0, 0, 0},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Int64(bm.input...)
+			}
+		})
+	}
+}
+
 func TestFloat32(t *testing.T) {
 	cases := map[string]struct {
 		input []float32
@@ -135,6 +198,27 @@ func TestFloat32(t *testing.T) {
 			got := Float32(tc.input...)
 			if got != tc.want {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
+			}
+		})
+	}
+}
+
+func BenchmarkFloat32(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []float32
+	}{
+		"best": {
+			input: []float32{1, 0, 0},
+		},
+		"worst": {
+			input: []float32{0, 0, 0},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Float32(bm.input...)
 			}
 		})
 	}
@@ -174,6 +258,27 @@ func TestFloat64(t *testing.T) {
 	}
 }
 
+func BenchmarkFloat64(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []float64
+	}{
+		"best": {
+			input: []float64{1, 0, 0},
+		},
+		"worst": {
+			input: []float64{0, 0, 0},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Float64(bm.input...)
+			}
+		})
+	}
+}
+
 func TestString(t *testing.T) {
 	cases := map[string]struct {
 		input []string
@@ -208,6 +313,27 @@ func TestString(t *testing.T) {
 	}
 }
 
+func BenchmarkString(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []string
+	}{
+		"best": {
+			input: []string{"1", "", ""},
+		},
+		"worst": {
+			input: []string{"", "", ""},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				String(bm.input...)
+			}
+		})
+	}
+}
+
 func TestInterface(t *testing.T) {
 	cases := map[string]struct {
 		input []interface{}
@@ -237,6 +363,27 @@ func TestInterface(t *testing.T) {
 			got := Interface(tc.input...)
 			if got != tc.want {
 				t.Errorf("value mismatch:\ngot:\t%#v\nwant:\t%#v", got, tc.input)
+			}
+		})
+	}
+}
+
+func BenchmarkInterface(b *testing.B) {
+	benchmarks := map[string]struct {
+		input []interface{}
+	}{
+		"best": {
+			input: []interface{}{1, nil, nil},
+		},
+		"worst": {
+			input: []interface{}{nil, nil, nil},
+		},
+	}
+	for name, bm := range benchmarks {
+		bm := bm // capture range variable
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Interface(bm.input...)
 			}
 		})
 	}
