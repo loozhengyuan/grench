@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Added
+
+* `coalesce`: New package for coalescing operations ([#47])
+
+[#47]: https://github.com/loozhengyuan/grench/pull/47
+
 <!-- END Unreleased -->
 
 ## [v0.5.0] - 2021-04-15
