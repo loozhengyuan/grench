@@ -52,7 +52,7 @@ func TestTouchFile(t *testing.T) {
 		path string
 	}{
 		"file_exists": {
-			path: filepath.Join(t.TempDir(), "path", "to", "file.txt"),
+			path: filepath.Join("path", "to", "file.txt"),
 		},
 	}
 	for name, tc := range cases {
@@ -60,18 +60,28 @@ func TestTouchFile(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
+			// Setup temp dir
+			tmp, err := ioutil.TempDir("", "")
+			if err != nil {
+				t.Fatalf("failed to create temp dir: %v", err)
+			}
+			defer os.RemoveAll(tmp)
+
+			// Join file path
+			p := filepath.Join(tmp, tc.path)
+
 			// Assert file not exists
-			if _, err := os.Stat(tc.path); !errors.Is(err, os.ErrNotExist) {
+			if _, err := os.Stat(p); !errors.Is(err, os.ErrNotExist) {
 				t.Fatalf("error mismatch:\ngot:\t%#v\nwant:\t%#v", err, os.ErrNotExist)
 			}
 
 			// Execute function
-			if err := TouchFile(tc.path); err != nil {
+			if err := TouchFile(p); err != nil {
 				t.Fatalf("failed to execute function: %v", err)
 			}
 
 			// Stat file
-			fi, err := os.Stat(tc.path)
+			fi, err := os.Stat(p)
 			if err != nil {
 				t.Fatalf("failed to stat file: %v", err)
 			}
@@ -86,17 +96,17 @@ func TestTouchFile(t *testing.T) {
 
 			// Write to file
 			data := []byte("something")
-			if err := ioutil.WriteFile(tc.path, data, 0600); err != nil {
+			if err := ioutil.WriteFile(p, data, 0600); err != nil {
 				t.Fatalf("failed to write to file: %v", err)
 			}
 
 			// Execute function again (assert idempotence)
-			if err := TouchFile(tc.path); err != nil {
+			if err := TouchFile(p); err != nil {
 				t.Fatalf("failed to execute function: %v", err)
 			}
 
 			// Assert file content unmodified
-			f, err := os.Open(tc.path)
+			f, err := os.Open(p)
 			if err != nil {
 				t.Fatalf("failed to open file: %v", err)
 			}
