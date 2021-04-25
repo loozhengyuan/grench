@@ -86,7 +86,7 @@ func TestTouchFile(t *testing.T) {
 
 			// Write to file
 			data := []byte("something")
-			if err := os.WriteFile(tc.path, data, 0600); err != nil {
+			if err := ioutil.WriteFile(tc.path, data, 0600); err != nil {
 				t.Fatalf("failed to write to file: %v", err)
 			}
 
