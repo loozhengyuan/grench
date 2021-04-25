@@ -9,8 +9,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 * `coalesce`: New package for coalescing operations ([#47])
+* `config`: New package for managing app config ([#48])
 
 [#47]: https://github.com/loozhengyuan/grench/pull/47
+[#48]: https://github.com/loozhengyuan/grench/pull/48
 
 <!-- END Unreleased -->
 
