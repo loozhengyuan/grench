@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v0.6.0] - 2021-04-27
 
-<!-- START Unreleased -->
+<!-- START v0.6.0 -->
 
 ### Added
 
@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 [#47]: https://github.com/loozhengyuan/grench/pull/47
 [#48]: https://github.com/loozhengyuan/grench/pull/48
 
-<!-- END Unreleased -->
+<!-- END v0.6.0 -->
 
 ## [v0.5.0] - 2021-04-15
 
@@ -98,7 +98,7 @@ Initial release.
 
 <!-- END v0.1.0 -->
 
-[Unreleased]: https://github.com/loozhengyuan/grench/compare/v0.5.0...HEAD
+[v0.6.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.6.0
 [v0.5.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.5.0
 [v0.4.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.3.0
