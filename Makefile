@@ -64,6 +64,7 @@ bench:
 
 # .PHONY: build
 # build:
+# 	CGO_ENABLED=0 \
 # 	go build \
 # 		-ldflags=" \
 # 			-X $(MODULE_NAME)/internal/pkg/build.Version=$(BUILD_VERSION) \
