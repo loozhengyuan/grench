@@ -21,6 +21,12 @@ To install `grench`, use `go get` to fetch the latest version:
 go get -u github.com/loozhengyuan/grench
 ```
 
+Once installed, you may import it directly into your Go application:
+
+```go
+import "github.com/loozhengyuan/grench"
+```
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
