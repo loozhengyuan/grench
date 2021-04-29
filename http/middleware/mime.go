@@ -3,8 +3,8 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/loozhengyuan/grench/pkg/http/header"
-	"github.com/loozhengyuan/grench/pkg/http/mime"
+	"github.com/loozhengyuan/grench/http/header"
+	"github.com/loozhengyuan/grench/http/mime"
 )
 
 // SetContentTypeJSON is a middleware that sets the content type of the

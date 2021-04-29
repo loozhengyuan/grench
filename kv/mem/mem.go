@@ -7,7 +7,7 @@ import (
 	"io"
 	"sync"
 
-	"github.com/loozhengyuan/grench/pkg/kv"
+	"github.com/loozhengyuan/grench/kv"
 )
 
 type store struct {

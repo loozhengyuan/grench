@@ -1,7 +1,7 @@
 package oidc
 
 import (
-	"github.com/loozhengyuan/grench/pkg/auth/oauth2"
+	"github.com/loozhengyuan/grench/auth/oauth2"
 )
 
 // TokenResponse represents the response type when querying
