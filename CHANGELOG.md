@@ -9,8 +9,10 @@ All notable changes to this project will be documented in this file.
 ## Others
 
 * **BREAKING**: Drop superfluous `pkg` directory ([#52])
+* **BREAKING**: Move packages into new `utils` package ([#53])
 
 [#52]: https://github.com/loozhengyuan/grench/pull/52
+[#53]: https://github.com/loozhengyuan/grench/pull/53
 
 <!-- END Unreleased -->
 
