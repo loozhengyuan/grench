@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+## Others
+
+* **BREAKING**: Drop superfluous `pkg` directory ([#52])
+
+[#52]: https://github.com/loozhengyuan/grench/pull/52
+
 <!-- END Unreleased -->
 
 ## [v0.6.0] - 2021-04-27

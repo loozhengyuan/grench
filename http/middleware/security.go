@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/loozhengyuan/grench/pkg/http/header"
+	"github.com/loozhengyuan/grench/http/header"
 )
 
 // PreventCache is a security middleware that protects sensitive data from
