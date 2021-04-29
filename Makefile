@@ -67,9 +67,9 @@ bench:
 # 	CGO_ENABLED=0 \
 # 	go build \
 # 		-ldflags=" \
-# 			-X $(MODULE_NAME)/internal/pkg/build.Version=$(BUILD_VERSION) \
-# 			-X $(MODULE_NAME)/internal/pkg/build.CommitHash=$(BUILD_COMMIT) \
-# 			-X $(MODULE_NAME)/internal/pkg/build.Timestamp=$(BUILD_TIMESTAMP)" \
+# 			-X $(MODULE_NAME)/internal/build.Version=$(BUILD_VERSION) \
+# 			-X $(MODULE_NAME)/internal/build.CommitHash=$(BUILD_COMMIT) \
+# 			-X $(MODULE_NAME)/internal/build.Timestamp=$(BUILD_TIMESTAMP)" \
 # 		-v \
 # 		-o $(EXECUTABLE_NAME) \
 # 		cmd/$(EXECUTABLE_NAME)/main.go
