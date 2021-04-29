@@ -3,6 +3,7 @@ package config
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -14,12 +15,24 @@ var (
 	testUserWorkingDir string
 )
 
-func TestMain(m *testing.M) {
-	if d, err := os.UserConfigDir(); err == nil {
-		testUserConfigDir = d
+func run() error {
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		return fmt.Errorf("get user config dir: %w", err)
 	}
-	if d, err := os.Getwd(); err == nil {
-		testUserWorkingDir = d
+	testUserConfigDir = configDir
+	workingDir, err := os.Getwd()
+	if err != nil {
+		return fmt.Errorf("get user working dir: %w", err)
+	}
+	testUserWorkingDir = workingDir
+	return nil
+}
+
+func TestMain(m *testing.M) {
+	if err := run(); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err)
+		os.Exit(1)
 	}
 	os.Exit(m.Run())
 }
