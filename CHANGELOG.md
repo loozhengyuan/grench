@@ -8,7 +8,9 @@ All notable changes to this project will be documented in this file.
 
 ### Others
 
-* Support for Go 1.17 ([#13])
+* Support for Go 1.17 ([#58])
+
+[#58]: https://github.com/loozhengyuan/grench/pull/58
 
 <!-- END Unreleased -->
 
