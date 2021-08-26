@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+<!-- START Unreleased -->
+
+<!-- END Unreleased -->
+
 ## [v0.7.0] - 2021-08-26
 
 <!-- START v0.7.0 -->
@@ -112,6 +118,7 @@ Initial release.
 
 <!-- END v0.1.0 -->
 
+[Unreleased]: https://github.com/loozhengyuan/grench/compare/v0.7.0...HEAD
 [v0.7.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.7.0
 [v0.6.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.6.0
 [v0.5.0]: https://github.com/loozhengyuan/grench/releases/tag/v0.5.0
