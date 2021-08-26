@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Others
+
+* Support for Go 1.17 ([#13])
+
 <!-- END Unreleased -->
 
 ## [v0.7.0] - 2021-08-26
