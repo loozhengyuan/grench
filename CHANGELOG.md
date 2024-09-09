@@ -6,11 +6,18 @@ All notable changes to this project will be documented in this file.
 
 <!-- START Unreleased -->
 
+### Added
+
+* `utils`: New package with `Pointer`/`Coalesce` functions via generics ([#72])
+* `http/middleware`: New `RequestID` middleware function ([#73])
+
 ### Others
 
-* Support for Go 1.17 ([#58])
+* **BREAKING**: Set Go 1.18 as minimum supported version ([#68])
 
-[#58]: https://github.com/loozhengyuan/grench/pull/58
+[#68]: https://github.com/loozhengyuan/grench/pull/68
+[#72]: https://github.com/loozhengyuan/grench/pull/72
+[#73]: https://github.com/loozhengyuan/grench/pull/73
 
 <!-- END Unreleased -->
 
