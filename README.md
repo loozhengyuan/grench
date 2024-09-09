@@ -13,7 +13,7 @@ Packages are not guaranteed to have a stable API and may be subjected to change.
 
 ## Install
 
-`grench` requires Go 1.13 or later.
+`grench` requires Go 1.18 or later.
 
 To install `grench`, use `go get` to fetch the latest version:
 
