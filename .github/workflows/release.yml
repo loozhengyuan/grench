@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Check git ref
         run: |
@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Parse changelog
         id: changelog
@@ -75,7 +75,7 @@ jobs:
 
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Create release
         uses: actions/create-release@v1
