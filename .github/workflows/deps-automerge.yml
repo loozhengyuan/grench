@@ -18,7 +18,7 @@ jobs:
   automerge:
     runs-on: ubuntu-22.04
     timeout-minutes: 2
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'loozhengyuan/enco' }}
+    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' && github.repository_owner == 'loozhengyuan' }}
 
     steps:
       - name: Fetch Dependabot metadata
